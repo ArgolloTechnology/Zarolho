@@ -23,7 +23,8 @@ roboEyes roboEyes; // create RoboEyes instance
 
 const uint8_t lightSensorPin = A3;  // Pino analógico para o sensor de luz
 const uint8_t buzzerPin = 8;
-
+const uint8_t standingPin = 12;
+const uint8_t laidPin = 4;
 // Sons
 const uint16_t startupSound[][2] = {
   {1000, 200}, {1200, 200}, {1500, 300}
@@ -82,9 +83,17 @@ void setup() {
 
   roboEyes.close();
   playSound(startupSound, sizeof(startupSound) / sizeof(startupSound[0]));
+
+  //pinMode(mutePin, INPUT_PULLUP);
+  pinMode(standingPin, INPUT_PULLUP);
+  pinMode(laidPin, INPUT_PULLUP);
 }
 
 void loop() {
+  Serial.print("laid value = ");
+  Serial.println(digitalRead(laidPin));
+  Serial.print("standing value = ");
+  Serial.println(digitalRead(standingPin));
   lightInteraction();
   roboEyes.update(); // update eyes drawings
   updateSound();
@@ -138,14 +147,6 @@ void lightInteraction() {
     rightEye = max(rightEye, 0);
     roboEyes.setHeight(leftEye, rightEye);
   }
-
-  // Mostra os valores dos olhos e a luminosidade no monitor serial
-  Serial.print("Luminosidade: ");
-  Serial.print(lightPercentage);
-  Serial.print("% | Left Eye: ");
-  Serial.print(leftEye);
-  Serial.print(" | Right Eye: ");
-  Serial.println(rightEye);
 }
 
 void playSound(const uint16_t sound[][2], uint8_t length) {
