@@ -18,7 +18,7 @@
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-#include <FluxGarage_RoboEyes.h>
+#include "Argollo_RoboEyes.h"
 roboEyes roboEyes; // create RoboEyes instance
 
 const uint8_t lightSensorPin = A3;  // Pino analógico para o sensor de luz
@@ -69,7 +69,7 @@ void setup() {
 
   // Define some automated eyes behaviour
   roboEyes.setAutoblinker(ON, 3, 2);
-  roboEyes.setIdleMode(ON, 2, 2);
+  roboEyes.setIdleMode(OFF, 2, 2);
 
   // Define eye shapes, all values in pixels
   roboEyes.setWidth(40, 40);
@@ -79,11 +79,11 @@ void setup() {
 
   // Define mood, curiosity and position
   roboEyes.setMood(mood);
-  roboEyes.setCuriosity(ON);
+  roboEyes.setCuriosity(OFF);
 
   roboEyes.close();
   playSound(startupSound, sizeof(startupSound) / sizeof(startupSound[0]));
-
+  roboEyes.setCyclops(true);
   //pinMode(mutePin, INPUT_PULLUP);
   pinMode(standingPin, INPUT_PULLUP);
   pinMode(laidPin, INPUT_PULLUP);
@@ -118,7 +118,7 @@ void lightInteraction() {
     } else {
       eventTimer = millis(); // Reinicia o timer
       roboEyes.setAutoblinker(ON, 6, 2);
-      roboEyes.setIdleMode(ON, 4, 2);
+      //roboEyes.setIdleMode(ON, 4, 2);
       roboEyes.setMood(TIRED);
       leftEye = max(leftEye - (leftEye * 0.2), 0);
       rightEye = max(rightEye - (rightEye * 0.2), 0);
@@ -139,7 +139,7 @@ void lightInteraction() {
     }
     roboEyes.setMood(mood);
     roboEyes.setAutoblinker(ON, 3, 2);
-    roboEyes.setIdleMode(ON, 2, 2);
+    //roboEyes.setIdleMode(ON, 2, 2);
     bright = false;
     leftEye = 25;
     rightEye = 40;
