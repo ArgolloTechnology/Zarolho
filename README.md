@@ -44,7 +44,7 @@ Coming soon...
 4. Use a flashlight or cover the light sensor to test the interactions.
 
 ## 📁 File Structure
-📂 Zarolho/ <br>
+📂 ZarolloBot/ <br>
 ├ 📂 Rivinbot/ <br>
 | └── Rivinbot.ino <br>
 ├ 📄 README.md <br>
