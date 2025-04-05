@@ -1,72 +1,63 @@
-# 👀 Robo Eyes com OLED SSD1306 e Arduino Zarollo
+# Robo Eyes OLED Animation (FluxGarage + Light Sensor + Sound)
 
-Este projeto usa a biblioteca **FluxGarage Robo Eyes** como base, com um display OLED SSD1306 via I2C para criar uma animação interativa de olhos robóticos, controlados por sensores de luz e sensores de posição. Também há sons emitidos via buzzer em diferentes situações (ligando, acordando, incomodado).
+This project is based on the [FluxGarage Robo Eyes](https://github.com/FluxGarage/FluxGarage-RoboEyes) library and enhances it with:
+- A light sensor that reacts to brightness changes.
+- A buzzer to simulate robot emotions with sounds.
+- Interaction logic for sleeping, waking up, and getting annoyed depending on the ambient light.
+- Status print on Serial Monitor and GPIO input handling.
 
-## 📦 Componentes Necessários
+## 🧠 Features
 
-- Arduino Nano R3 (ou compatível)
-- Display OLED I2C com driver SSD1306 ou SSD1309
-- Sensor de luminosidade (LDR) conectado ao pino A3
-- Buzzer passivo no pino digital 8
-- Sensor de posição "em pé" no pino digital 12 (ex: botão, reed switch)
-- Sensor de posição "deitado" no pino digital 4
-- Jumpers e protoboard
+- OLED display animation using the SSD1306 driver.
+- Eyes close slowly in darkness and eventually fall asleep.
+- Annoyed reaction with sounds and squinting eyes in bright environments.
+- Wake-up animation and sound when brightness increases.
+- Custom sound effects using a buzzer.
+- Two GPIO inputs for physical interaction (e.g., laying down or standing up).
 
-## 🧠 Funcionalidades
+## 🛠️ Hardware Required
 
-- Olhos animados com piscadas automáticas e movimentos de curiosidade
-- Reações ao nível de luz:
-  - **Ambiente escuro:** olhos vão fechando até dormir
-  - **Ambiente muito claro:** olhos se contraem e emitem som de incômodo
-  - **Luz média:** olhos normais e alerta
-- Sons diferentes para:
-  - Inicialização
-  - Acordar
-  - Irritação
-- Animação de olhos confusos ao acordar do "sono"
-- Ajustes automáticos de altura dos olhos conforme o ambiente
+- Arduino Nano R3 or compatible.
+- OLED 128x64 display with SSD1306 or SH1106 driver (I2C).
+- Light sensor (e.g., LDR with a resistor).
+- Piezo buzzer.
+- Jumper wires.
+- Breadboard.
 
-## 📁 Estrutura do Código
-
-- `setup()`: Inicializa o display, os olhos e o sistema de som
-- `loop()`: Atualiza os olhos e monitora os sensores
-- `lightInteraction()`: Lê o sensor de luz e altera os olhos e sons conforme necessário
-- `playSound()` / `updateSound()`: Sistema de reprodução de sons não-bloqueante
-
-## 🖼️ Exemplo de Animação
-
-Ao ligar o sistema:
-- Os olhos abrem
-- É reproduzido um som de "ligando"
-- Dependendo da luminosidade, o comportamento muda automaticamente
-
-## 📚 Bibliotecas Utilizadas
+## 📦 Library Dependencies
 
 - [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 - [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library)
-- [FluxGarage RoboEyes](https://github.com/FluxGarage/RoboEyes)
+- [FluxGarage RoboEyes](https://github.com/FluxGarage/FluxGarage-RoboEyes)
 
-> Certifique-se de instalar todas as bibliotecas via o Gerenciador de Bibliotecas da IDE Arduino.
+Install these through the Arduino Library Manager or manually.
 
-## ⚙️ Configurações
+## 📷 Screenshots
 
-- Endereço I2C do display: `0x3C` (ajuste se o seu for `0x3D`)
-- Resolução do display: 128x64
-- Frequência serial: `9600 bps`
+Coming soon...
 
-## 🧪 Possíveis Expansões
+## 🚀 Getting Started
 
-- **Estilos de olhos diferentes:** adicionar olhos em formato de coração, espiral, etc.
-- **Integração com controle remoto ou comandos por Bluetooth**
-- **Adicionar expressões com base em humor ou sensores adicionais (temperatura, som, etc)**
+1. Connect the components as described in the hardware section.
+2. Upload the `main.ino` sketch to your Arduino.
+3. Open the Serial Monitor to check GPIO input states.
+4. Use a flashlight or cover the light sensor to test the interactions.
 
-## 📸 Créditos
+## 📁 File Structure
+📂 Zarolho/ <br>
+├ 📂 Rivinbot/ <br>
+| └── Rivinbot.ino <br>
+├ 📄 README.md <br>
+└ 📄 LICENSE<br>
 
-Este projeto é baseado no exemplo da biblioteca **FluxGarage Robo Eyes**, criado por Dennis Hoelscher (FluxGarage).
 
-- [YouTube - FluxGarage](https://www.youtube.com/@FluxGarage)
-- [Website - FluxGarage](https://www.fluxgarage.com)
+## 📝 License
 
----
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-> Sinta-se livre para contribuir com melhorias, animações personalizadas ou integração com novos sensores!
+## 📣 Credits
+
+- [FluxGarage](https://www.fluxgarage.com) for the RoboEyes library and concept.
+- Inspired by expressive robot projects and robotic pets.
+
+
